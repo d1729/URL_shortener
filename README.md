@@ -19,3 +19,4 @@ As of now, the app has two rest endpoints:
 }
 ```
 2. **GET** /<short-code> 
+3. **DELETE** /<short-code>

@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from shortner.serializers import ShortUrlSerializer
-from shortner.services import generate_unique_short_code, get_original_url
+from shortner.services import generate_unique_short_code, get_original_url, get_url_object
 
 
 class ShortenerView(APIView):
@@ -23,3 +23,11 @@ class ShortenerView(APIView):
         if not original_url:
             return Response({'message': 'URL not found'}, status=status.HTTP_404_NOT_FOUND)
         return Response({'original_url': original_url}, status=status.HTTP_308_PERMANENT_REDIRECT)
+
+
+    def delete(self, request, shortcode):
+        url = get_url_object(shortcode)
+        if not url:
+            return Response({'error': 'URL not found'}, status=status.HTTP_404_NOT_FOUND)
+        url.delete()
+        return Response({'message': 'Success'}, status=status.HTTP_204_NO_CONTENT)
