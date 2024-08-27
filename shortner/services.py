@@ -32,3 +32,7 @@ def get_url_object(short_code):
     except ShortUrl.DoesNotExist:
         log.error(f'Shorturl not found for {short_code}')
         return None
+
+
+def check_short_url(short_code):
+    return ShortUrl.objects.filter(short_code=short_code).exists()

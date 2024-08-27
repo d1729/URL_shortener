@@ -20,3 +20,10 @@ As of now, the app has two rest endpoints:
 ```
 2. **GET** /<short-code> 
 3. **DELETE** /<short-code>
+4. **PATCH** /update-short-code
+```
+{
+	"original_shortcode": "8o57DxTm",
+	"new_shortcode": "Special"
+}
+```
